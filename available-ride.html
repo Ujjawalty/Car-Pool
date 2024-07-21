@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Available Rides</title>
+  <link href="../static/css/available ride.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo-container">
+       <img src="../static/img/carpool.png" alt="carpool logo">
+       <h1>Car Pool</h1>
+        </div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="about">About</a>
+        <a href="services">Services</a>
+        <a href="contact">Contact</a>
+        <a href="search-ride">Search Ride</a>
+      </nav>
+                
+      
+      <div class="user log">
+        <a href="login.html">          
+            <i class="fa-solid fa-user"></i>
+                <font style="vertical-align: inherit;">Log in</font>
+              </a>
+              /
+              <a href="signin.html">
+                  <font style="vertical-align: inherit;">Sign Up</font>
+                  
+              </a>
+          </div>
+      </header> 
+  
+      <h1>Available rides</h1>
+
+
+
+    
+
+    
+    <div class="container">
+        
+
+        {% if search_results %}
+
+        <p> Result Found: <span>{{msg}}</span>{{msg1}} </p>
+
+        {% else %}
+
+        <p>No doctors found.</p>
+
+        {% endif %}
+
+
+    {% for ride in search_results %}
+
+        <div class="ride-card">
+            <div class="image1">
+                <img src="../static/img/carpool.jpg">
+            </div>
+            <div class="content">
+                <h2>User: {{ride.name}}</h2>
+                <p>Ride Type: {{ride.rideType}}</p>
+                <p>Pickup Location: {{ride.arrival}}</p>
+                <p>Drop Location: {{ride.destination}}</p>
+                <p>Seats Available: {{ride.passenger}}</p>
+            </div>
+
+            <form action="/payment" method="post"> 
+            <div class="button">
+                <button>Book Ride </button>
+            </div>
+            </form>
+        </div>
+      
+    {% endfor %}
+        
+
+    </div>
+  </body>
+  
+</html>
